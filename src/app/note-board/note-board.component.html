@@ -1,0 +1,56 @@
+<div class="new-note-button">
+  <button type="button" class="btn btn-primary" (click)="showNewNote()">Add Note</button>
+</div>
+
+<div class="new-note" [style.display]="newNoteVisible ? 'block' : 'none'">
+  <form>
+    <div class="note-input">
+      <label>Note Description:</label>
+      <input type="text" [(ngModel)]="newNote.note_description" name="note_description">
+    </div>
+      <div class="note-input">
+      <label>Due Date:</label>
+      <input type="date" [(ngModel)]="newNote.due_date" name="due_date">
+    </div>
+    <div class="note-input">
+      <label>Assignee:</label>
+      <input type="text" [(ngModel)]="newNote.assignee" name="assignee">
+    </div>
+    <div class="note-input">
+      <label>Attachments:</label>
+      <input type="text" [(ngModel)]="newNote.attachments" name="attachments">
+    </div>
+    <div class="note-input">
+      <label>Priority Level:</label>
+      <select [(ngModel)]="newNote.priority_level" name="priority_level">
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+    </div>
+    <div class="note-input">
+      <label>Comments:</label>
+      <textarea [(ngModel)]="newNote.comments" name="comments"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="addNote()">Add Note</button>
+    <button type="button" class="btn btn-secondary" (click)="hideNewNote()">Cancel</button>
+  </form>
+</div>
+<div class="note-board">
+  <div class="note-container to-do">
+    <h3 class="status-title">To Do</h3>
+    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'To Do'" [note]="note"></app-note-card>
+  </div>
+  <div class="note-container doing">
+    <h3 class="status-title">Doing</h3>
+    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Doing'" [note]="note"></app-note-card>
+  </div>
+  <div class="note-container review">
+    <h3 class="status-title">Review</h3>
+    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'" [note]="note"></app-note-card>
+  </div>
+  <div class="note-container done">
+    <h3 class="status-title">Done</h3>
+    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Done'" [note]="note"></app-note-card>
+  </div>
+</div>
