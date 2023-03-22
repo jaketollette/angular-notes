@@ -5,7 +5,7 @@ import { Note } from './note';
   providedIn: 'root'
 })
 export class NoteService {
-  notes: Note[] = [
+  private notes: Note[] = [
     new Note(
       1,
       'Implement user authentication',
@@ -63,5 +63,13 @@ export class NoteService {
 
   getNotes(): Note[] {
     return this.notes;
+  }
+
+  addNote(note: Note): void {
+    note.note_id = this.generateUniqueId();
+  }
+
+  private generateUniqueId(): number {
+    return this.notes.length + 1;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Note } from '../note-card/note';
 import { NoteService } from '../note-card/note.service';
 
@@ -9,39 +9,16 @@ import { NoteService } from '../note-card/note.service';
 })
 export class NoteBoardComponent implements OnInit {
   notes: Note[] = [];
-  newNoteDescription: string = 'new-note';
-  @Output() newNote: Note = new Note(1, '', new Date(), '', '', '', '', 'To Do');
-  newNoteVisible = false;
 
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.notes = this.noteService.getNotes();
   }
 
-  showNewNote() {
-    this.newNoteVisible = true;
-  }
-  hideNewNote() {
-    this.newNoteVisible = false;
-  }
-
-  addNote() {
-    const newNote = new Note(
-      this.notes.length + 1,
-      this.newNoteDescription,
-      new Date(),
-      '',
-      '',
-      '',
-      '',
-      'To Do'
-    );
+  onNoteAdded(newNote: Note) {
     this.notes.push(newNote);
-    this.newNoteDescription = '';
-  }
-
-  showStuff($event: any) {
-    console.log($event)
+    this.changeDetector.detectChanges();
+    this.notes = [...this.notes];
   }
 }
