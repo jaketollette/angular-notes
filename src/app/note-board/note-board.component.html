@@ -1,19 +1,44 @@
 <app-new-note (noteAdded)="onNoteAdded($event)"></app-new-note>
+
 <div class="note-board">
   <div class="note-container to-do">
     <h3 class="status-title">To Do</h3>
-    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'To Do'" [note]="note"></app-note-card>
+    <div class="toggle-button-container">
+      <button type="button" class="button toggle-button" (click)="toggleNotes('to-do')">Hide Notes</button>
+    </div>
+    <div class="note-list" id="todo-notes">
+      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'To Do'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+    </div>
   </div>
+
   <div class="note-container doing">
     <h3 class="status-title">Doing</h3>
-    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Doing'" [note]="note"></app-note-card>
+    <div class="toggle-button-container">
+      <button type="button" class="button toggle-button" (click)="toggleNotes('doing')">Hide Notes</button>
+    </div>
+    <div class="note-list" id="doing-notes">
+      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Doing'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+    </div>
   </div>
+
   <div class="note-container review">
     <h3 class="status-title">Review</h3>
-    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'" [note]="note"></app-note-card>
+    <div class="toggle-button-container">
+      <button type="button" class="button toggle-button" (click)="toggleNotes('review')">Hide Notes</button>
+    </div>
+    <div class="note-list" id="review-notes">
+      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+    </div>
   </div>
+
   <div class="note-container done">
     <h3 class="status-title">Done</h3>
-    <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Done'" [note]="note"></app-note-card>
+    <div class="toggle-button-container">
+      <button type="button" class="button toggle-button" (click)="toggleNotes('done')">Hide Notes</button>
+    </div>
+    <div class="note-list" id="done-notes">
+      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Done'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+    </div>
   </div>
+
 </div>

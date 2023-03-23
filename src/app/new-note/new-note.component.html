@@ -1,5 +1,5 @@
-<div class="new-note-button">
-  <button type="button" class="btn btn-primary" (click)="showNewNote()">Add Note</button>
+<div class="new-note-button-container">
+  <button type="button" class="button new-note-button" (click)="showNewNote()">Add Note</button>
 </div>
 
 <div class="new-note" [style.display]="newNoteVisible ? 'block' : 'none'">
@@ -23,16 +23,16 @@
     <div class="note-input">
       <label>Priority Level:</label>
       <select [(ngModel)]="newNote.priority_level" name="priority_level">
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low">Low</option>
+        <option style="color:#000;" value="High">High</option>
+        <option style="color:#000;" value="Medium">Medium</option>
+        <option style="color:#000;" value="Low">Low</option>
       </select>
     </div>
     <div class="note-input">
       <label>Comments:</label>
       <textarea [(ngModel)]="newNote.comments" name="comments"></textarea>
     </div>
-    <button type="button" class="btn btn-primary add-note-button" (click)="addNote(newNote)">Add New Note</button>
-    <button type="button" class="btn btn-secondary" (click)="hideNewNote()">Cancel</button>
+    <button type="button" class="button add-note-button" (click)="addNote(newNote)">Add New Note</button>
+    <button type="button" class="button cancel-add-note-button" (click)="hideNewNote()">Cancel</button>
   </form>
 </div>

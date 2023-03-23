@@ -6,6 +6,7 @@
   max-width: 90%;
   margin: 0 auto;
   margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .note-container {
@@ -21,8 +22,27 @@
 
 .status-title {
   text-align: center;
+  color: #000;
 }
 
 .note-card {
   padding-bottom: 2rem;
+}
+
+.note-list.hidden {
+  display: none;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-button-container {
+  align-self: self-end;
+  padding: 0 15px 5px 0;
+}
+
+.toggle-button {
+
 }

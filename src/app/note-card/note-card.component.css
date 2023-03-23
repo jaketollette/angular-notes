@@ -1,8 +1,9 @@
 .note {
   border: 1px solid black;
   padding: 1rem;
-  max-height: 425px;
   overflow: hidden;
+  background-color: #3a7ca5;
+  border-radius: 5%;
 }
 
 .note-title {

@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+
+* {
+  box-sizing: border-box;
+  color: #d9dcd6;
+}
+
+.button {
+  font-size: 14px;
+  background-color: #16425b;
+  border-radius: 15px;
+}
+
+.button:hover {
+  background-color: #d9dcd6;
+  color: #16425b;
+}
