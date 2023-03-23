@@ -11,6 +11,11 @@ export class NoteCardComponent {
   @Output() onDeleteNote = new EventEmitter<number>();
 
   deleteNote() {
-    this.onDeleteNote.emit(this.note?.note_id);
+    if (confirm("DELETE?") != true) {
+      return;
+    } else {
+      this.onDeleteNote.emit(this.note?.note_id);
+    }
   }
+
 }
