@@ -59,6 +59,8 @@ export class NoteService {
     // Add more notes here
   ];
 
+  private lastNoteId: number = this.notes.reduce((maxId, note) => Math.max(maxId, note.note_id), 0);
+
   constructor() {}
 
   getNotes(): Note[] {
@@ -66,10 +68,12 @@ export class NoteService {
   }
 
   addNote(note: Note): void {
-    note.note_id = this.generateUniqueId();
+    note.note_id = ++this.lastNoteId;
+    this.notes.push(note);
   }
 
-  private generateUniqueId(): number {
-    return this.notes.length + 1;
+  deleteNote(note_id: Number): void {
+    this.notes = this.notes.filter(note => note.note_id !== note_id);
   }
+
 }

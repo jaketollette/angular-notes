@@ -34,7 +34,7 @@ export class NewNoteComponent {
 
   addNote(newNote: Note) {
     const noteToAdd = new Note(
-      0,
+      newNote.note_id,
       newNote.note_description,
       newNote.due_date,
       newNote.assignee,
@@ -43,7 +43,6 @@ export class NewNoteComponent {
       newNote.comments,
       'To Do'
     );
-    this.NoteService.addNote(noteToAdd);
     this.newNote = new Note(0, '', new Date(), '', '', '', '', 'To Do');
 
     this.noteAdded.emit(noteToAdd);

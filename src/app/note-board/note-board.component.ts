@@ -27,11 +27,12 @@ export class NoteBoardComponent implements OnInit {
   }
 
   onNoteAdded(newNote: Note) {
-    this.notes.push(newNote);
+    this.noteService.addNote(newNote);
+    this.notes = this.noteService.getNotes();
     this.changeDetector.detectChanges();
-    this.notes = [...this.notes];
     this.saveNotes();
   }
+
 
   saveNotes() {
     localStorage.setItem('notes', JSON.stringify(this.notes));

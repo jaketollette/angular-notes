@@ -6,7 +6,11 @@
       <button type="button" class="button toggle-button" (click)="toggleNotes('to-do')">Hide Notes</button>
     </div>
     <div class="note-list" id="todo-notes">
-      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'To Do'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+      <app-note-card class="note-card"
+        *ngFor="let note of notes | statusFilter:'To Do'"
+        [note]="note"
+        (onDeleteNote)="removeNote($event)">
+      </app-note-card>
     </div>
   </div>
 
@@ -16,7 +20,11 @@
       <button type="button" class="button toggle-button" (click)="toggleNotes('doing')">Hide Notes</button>
     </div>
     <div class="note-list" id="doing-notes">
-      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Doing'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+      <app-note-card class="note-card"
+        *ngFor="let note of notes | statusFilter:'Doing'"
+        [note]="note"
+        (onDeleteNote)="removeNote($event)">
+      </app-note-card>
     </div>
   </div>
 
@@ -26,7 +34,10 @@
       <button type="button" class="button toggle-button" (click)="toggleNotes('review')">Hide Notes</button>
     </div>
     <div class="note-list" id="review-notes">
-      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'" [note]="note" (onDeleteNote)="removeNote($event)"></app-note-card>
+      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'"
+      [note]="note"
+      (onDeleteNote)="removeNote($event)">
+    </app-note-card>
     </div>
   </div>
 
