@@ -9,6 +9,7 @@ import { Note } from './note';
 export class NoteCardComponent {
   @Input() note?: Note;
   @Output() onDeleteNote = new EventEmitter<number>();
+  isExpanded = false;
 
   deleteNote() {
     if (confirm("DELETE?") != true) {
@@ -16,6 +17,10 @@ export class NoteCardComponent {
     } else {
       this.onDeleteNote.emit(this.note?.note_id);
     }
+  }
+
+  expandNote() {
+    this.isExpanded = !this.isExpanded;
   }
 
 }

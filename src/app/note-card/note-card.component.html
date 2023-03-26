@@ -1,11 +1,16 @@
 <div class="note">
   <h2 class="note-title">{{ note?.note_description }}</h2>
-  <p>ID: {{ note?.note_id }}</p>
-  <p>Due Date: {{ note?.due_date }}</p>
-  <p>Assignee: {{ note?.assignee }}</p>
-  <p>Attachments: {{ note?.attachments }}</p>
-  <p>Priority Level: {{ note?.priority_level }}</p>
-  <p>Comments: {{ note?.comments }}</p>
-  <p>Status: {{ note?.note_status }}</p>
-  <button type="button" class="btn btn-danger" (click)="deleteNote()">Delete</button>
+  <div class="note-info" [ngStyle]="{display: isExpanded ? 'block' : 'none'}">
+    <p class="note-id">ID: {{ note?.note_id }}</p>
+    <p class="note-due">Due Date: {{ note?.due_date }}</p>
+    <p class="note-assignee">Assignee: {{ note?.assignee }}</p>
+    <p class="note-attachments">Attachments: {{ note?.attachments }}</p>
+    <p class="note-priority">Priority Level: {{ note?.priority_level }}</p>
+    <p class="note-comments">Comments: {{ note?.comments }}</p>
+    <p class="note-status">Status: {{ note?.note_status }}</p>
+  </div>
+  <div class="note-buttons">
+    <button type="button" class="btn btn-primary expand-button" (click)="expandNote()">{{ isExpanded ? 'Collapse' : 'Expand' }}</button>
+    <button type="button" class="btn btn-danger delete-button" (click)="deleteNote()">Delete</button>
+  </div>
 </div>

@@ -17,10 +17,20 @@ export class NewNoteComponent {
 
   showNewNote() {
     this.newNoteVisible = true;
+    const newNoteContainer = document.querySelector('.new-note-container');
+    if (newNoteContainer) {
+      newNoteContainer.classList.add('dark-background');
+    }
   }
+
   hideNewNote() {
     this.newNoteVisible = false;
+    const newNoteContainer = document.querySelector('.new-note-container');
+    if (newNoteContainer) {
+      newNoteContainer.classList.remove('dark-background');
+    }
   }
+
 
   addNote(newNote: Note) {
     const noteToAdd = new Note(

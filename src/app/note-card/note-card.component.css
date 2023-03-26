@@ -4,9 +4,20 @@
   overflow: hidden;
   background-color: #3a7ca5;
   border-radius: 5%;
+  overflow: auto;
 }
 
 .note-title {
   text-align: center;
   text-transform: capitalize;
+}
+
+.note-info {
+  display: none;
+}
+
+.note-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: end;
 }
