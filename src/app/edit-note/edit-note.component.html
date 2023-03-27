@@ -2,7 +2,7 @@
   <div class="edit-note-button-container">
     <button type="button" class="button edit-note-button" (click)="expandNote()">Edit Note</button>
   </div>
-  <div class="edit-note" [style.display]="editNoteVisible ? 'block' : 'none'">
+  <div class="edit-note" [style.display]="isExpanded ? 'block' : 'none'">
   <h2>Edit Note</h2>
   <form>
     <div class="note-input">

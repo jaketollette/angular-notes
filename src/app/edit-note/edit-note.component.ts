@@ -10,21 +10,23 @@ import { NoteService } from '../note-card/note.service';
 export class EditNoteComponent {
   @Input() note!: Note;
   @Output() noteEdited = new EventEmitter<Note>();
-  editNoteVisible = false;
+  editNote: Note = new Note(0, '', new Date(), '', '', '', '', 'To Do');
+  isExpanded = false;
   changeDetector: any;
 
   constructor(private noteService: NoteService) {}
 
   expandNote() {
-    this.editNoteVisible = true;
+    this.isExpanded = true;
     const editNoteContainer = document.querySelector('.edit-note-container');
     if (editNoteContainer) {
       editNoteContainer.classList.add('dark-background');
     }
+    this.editNote = this.note;
   }
 
   hideNewNote() {
-    this.editNoteVisible = false;
+    this.isExpanded = false;
     const editNoteContainer = document.querySelector('.edit-note-container');
     if (editNoteContainer) {
       editNoteContainer.classList.remove('dark-background');
@@ -32,13 +34,13 @@ export class EditNoteComponent {
   }
 
   saveNote() {
-    this.noteService.editNote(this.note);
-    this.noteEdited.emit(this.note);
+    this.noteService.editNote(this.editNote);
+    this.noteEdited.emit(this.editNote);
     this.changeDetector.detectChanges();
   }
 
   cancelEdit() {
-    this.editNoteVisible = false;
+    this.isExpanded = false;
     this.hideNewNote();
     this.changeDetector.detectChanges();
   }
