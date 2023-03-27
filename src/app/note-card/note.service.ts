@@ -64,16 +64,35 @@ export class NoteService {
   constructor() {}
 
   getNotes(): Note[] {
-    return this.notes;
+    const notesInStorage = localStorage.getItem('notes');
+    if (notesInStorage) {
+      return this.notes = JSON.parse(notesInStorage);
+    } else {
+      return this.notes;
+    }
   }
 
   addNote(note: Note): void {
     note.note_id = ++this.lastNoteId;
     this.notes.push(note);
+    this.saveNotes();
+  }
+
+  editNote(updatedNote: Note): void {
+    const index = this.notes.findIndex(note => note.note_id === updatedNote.note_id);
+    if (index > -1) {
+      this.notes[index] = updatedNote;
+      this.saveNotes();
+    }
   }
 
   deleteNote(note_id: Number): void {
     this.notes = this.notes.filter(note => note.note_id !== note_id);
+    this.saveNotes();
+  }
+
+  saveNotes() {
+    localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
 }

@@ -18,29 +18,17 @@ export class NoteBoardComponent implements OnInit {
   constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    const notesInStorage = localStorage.getItem('notes');
-    if (notesInStorage) {
-      this.notes = JSON.parse(notesInStorage);
-    } else {
-      this.notes = this.noteService.getNotes();
-    }
+    this.notes = this.noteService.getNotes();
   }
 
   onNoteAdded(newNote: Note) {
     this.noteService.addNote(newNote);
     this.notes = this.noteService.getNotes();
     this.changeDetector.detectChanges();
-    this.saveNotes();
-  }
-
-
-  saveNotes() {
-    localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
   removeNote(noteId: number) {
     this.notes = this.notes.filter(note => note.note_id !== noteId);
-    this.saveNotes();
   }
 
   toggleNotes(container: string) {

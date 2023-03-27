@@ -1,0 +1,48 @@
+<div class="edit-note-container">
+  <div class="edit-note-button-container">
+    <button type="button" class="button edit-note-button" (click)="expandNote()">Edit Note</button>
+  </div>
+  <div class="edit-note" [style.display]="editNoteVisible ? 'block' : 'none'">
+  <h2>Edit Note</h2>
+  <form>
+    <div class="note-input">
+      <label>Note Description:</label>
+      <input type="text" [(ngModel)]="note.note_description" name="note_description">
+    </div>
+    <div class="note-input">
+      <label>Due Date:</label>
+      <input type="date" [(ngModel)]="note.due_date" name="due_date">
+    </div>
+    <div class="note-input">
+      <label>Assignee:</label>
+      <input type="text" [(ngModel)]="note.assignee" name="assignee">
+    </div>
+    <div class="note-input">
+      <label>Attachments:</label>
+      <input type="text" [(ngModel)]="note.attachments" name="attachments">
+    </div>
+    <div class="note-input">
+      <label>Priority Level:</label>
+      <select [(ngModel)]="note.priority_level" name="priority_level">
+        <option style="color:#000;" value="High">High</option>
+        <option style="color:#000;" value="Medium">Medium</option>
+        <option style="color:#000;" value="Low">Low</option>
+      </select>
+    </div>
+    <div class="note-input">
+      <label>Comments:</label>
+      <textarea [(ngModel)]="note.comments" name="comments"></textarea>
+    </div>
+    <div class="note-input">
+      <label>Note Status:</label>
+      <select [(ngModel)]="note.note_status" name="note_status">
+        <option style="color:#000;" value="To Do">To Do</option>
+        <option style="color:#000;" value="Doing">Doing</option>
+        <option style="color:#000;" value="Review">Review</option>
+        <option style="color:#000;" value="Done">Done</option>
+      </select>
+    </div>
+    <button type="submit" class="button save-note-button" (click)="saveNote()">Save Note</button>
+    <button type="button" class="button cancel-note-button" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>

@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NoteCardComponent,
     NoteBoardComponent,
     StatusFilterPipe,
-    NewNoteComponent
+    NewNoteComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,

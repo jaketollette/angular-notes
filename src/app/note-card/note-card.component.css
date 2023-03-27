@@ -1,15 +1,18 @@
 .note {
-  border: 1px solid black;
   padding: 1rem;
   overflow: hidden;
-  background-color: #3a7ca5;
   border-radius: 5%;
   overflow: auto;
+}
+
+.note p {
+  color: #000;
 }
 
 .note-title {
   text-align: center;
   text-transform: capitalize;
+  color: #000;
 }
 
 .note-info {

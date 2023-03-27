@@ -44,7 +44,6 @@ export class NewNoteComponent {
       'To Do'
     );
     this.newNote = new Note(0, '', new Date(), '', '', '', '', 'To Do');
-
     this.noteAdded.emit(noteToAdd);
     this.hideNewNote();
   }

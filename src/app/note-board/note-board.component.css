@@ -14,6 +14,8 @@
   flex-direction: column;
   flex: 1;
   margin-right: 20px;
+  background-color: #EAEDEE;
+  height: 100vh;
 }
 
 .note-container:last-child {
@@ -26,10 +28,17 @@
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: 500;
+  background-color: #3a7ca5;
+  border-radius: 6px 6px 0 0;
 }
 
 .note-card {
   padding-bottom: 2rem;
+  box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.7);
+  width: 90%;
+  margin: auto;
+  border-radius: 6px;
+  background-color: #F5F6F7;
 }
 
 .note-list.hidden {

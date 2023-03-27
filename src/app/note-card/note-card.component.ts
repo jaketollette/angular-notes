@@ -10,6 +10,7 @@ import { NoteService } from './note.service';
 export class NoteCardComponent {
   @Input() note!: Note;
   @Output() onDeleteNote = new EventEmitter<number>();
+  @Output() onEditNote = new EventEmitter<number>();
   isExpanded = false;
 
   constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
@@ -25,6 +26,11 @@ export class NoteCardComponent {
 
   expandNote() {
     this.isExpanded = !this.isExpanded;
+    // this.changeDetector.detectChanges();
+  }
+
+  editNote() {
+    this.onEditNote.emit(this.note?.note_id);
   }
 
 }
