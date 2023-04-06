@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Note } from './note';
 
 @Injectable({
@@ -55,11 +55,12 @@ export class NoteService {
       'Medium',
       '',
       'Doing'
-    ),
-    // Add more notes here
+    )
   ];
 
   private lastNoteId: number = this.notes.reduce((maxId, note) => Math.max(maxId, note.note_id), 0);
+  @Output() noteAdded = new EventEmitter<Note>();
+  @Output() noteDeleted = new EventEmitter<number>();
 
   constructor() {}
 

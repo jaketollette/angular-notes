@@ -9,28 +9,22 @@ import { NoteService } from './note.service';
 })
 export class NoteCardComponent {
   @Input() note!: Note;
-  @Output() onDeleteNote = new EventEmitter<number>();
-  @Output() onEditNote = new EventEmitter<number>();
   isExpanded = false;
 
   constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
 
-  deleteNote(note_id: Number) {
+  deleteNote() {
     if (confirm("DELETE?") != true) {
       return;
     } else {
-      this.onDeleteNote.emit(this.note?.note_id);
+      this.noteService.noteDeleted.emit(this.note.note_id);
       this.noteService.deleteNote(this.note.note_id);
     }
   }
 
   expandNote() {
     this.isExpanded = !this.isExpanded;
-    // this.changeDetector.detectChanges();
   }
 
-  editNote() {
-    this.onEditNote.emit(this.note?.note_id);
-  }
 
 }

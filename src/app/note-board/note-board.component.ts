@@ -19,6 +19,13 @@ export class NoteBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.notes = this.noteService.getNotes();
+
+    this.noteService.noteAdded.subscribe((newNote: Note) => {
+      this.onNoteAdded(newNote);
+    });
+    this.noteService.noteDeleted.subscribe((note_id: number) => {
+      this.onNoteDeleted(note_id);
+    });
   }
 
   onNoteAdded(newNote: Note) {
@@ -27,8 +34,8 @@ export class NoteBoardComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  removeNote(noteId: number) {
-    this.notes = this.notes.filter(note => note.note_id !== noteId);
+  onNoteDeleted(note_id: number) {
+    this.notes = this.notes.filter(note => note.note_id !== note_id);
   }
 
   toggleNotes(container: string) {

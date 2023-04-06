@@ -11,7 +11,6 @@ export class NewNoteComponent {
   newNoteDescription: string = 'new-note';
   @Output() newNote: Note = new Note(0, '', new Date(), '', '', '', '', 'To Do');
   newNoteVisible = false;
-  @Output() noteAdded = new EventEmitter<Note>();
 
   constructor(private NoteService: NoteService) {}
 
@@ -43,8 +42,9 @@ export class NewNoteComponent {
       newNote.comments,
       'To Do'
     );
+    this.NoteService.noteAdded.emit(noteToAdd);
     this.newNote = new Note(0, '', new Date(), '', '', '', '', 'To Do');
-    this.noteAdded.emit(noteToAdd);
     this.hideNewNote();
+
   }
 }

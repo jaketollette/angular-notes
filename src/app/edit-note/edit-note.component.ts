@@ -10,9 +10,7 @@ import { NoteService } from '../note-card/note.service';
 export class EditNoteComponent {
   @Input() note!: Note;
   @Output() noteEdited = new EventEmitter<Note>();
-  editNote: Note = new Note(0, '', new Date(), '', '', '', '', 'To Do');
   isExpanded = false;
-  changeDetector: any;
 
   constructor(private noteService: NoteService) {}
 
@@ -22,7 +20,6 @@ export class EditNoteComponent {
     if (editNoteContainer) {
       editNoteContainer.classList.add('dark-background');
     }
-    this.editNote = this.note;
   }
 
   hideNewNote() {
@@ -32,16 +29,5 @@ export class EditNoteComponent {
       editNoteContainer.classList.remove('dark-background');
     }
   }
-
-  saveNote() {
-    this.noteService.editNote(this.editNote);
-    this.noteEdited.emit(this.editNote);
-    this.changeDetector.detectChanges();
-  }
-
-  cancelEdit() {
-    this.isExpanded = false;
-    this.hideNewNote();
-    this.changeDetector.detectChanges();
-  }
+  
 }
