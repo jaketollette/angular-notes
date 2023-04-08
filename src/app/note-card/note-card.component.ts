@@ -22,6 +22,11 @@ export class NoteCardComponent {
     }
   }
 
+  editNotePush() {
+    this.noteService.editNotePushed.emit(this.note);
+  }
+
+
   expandNote() {
     this.isExpanded = !this.isExpanded;
   }

@@ -1,7 +1,7 @@
 <div class="edit-note-container">
   <div class="edit-note" [style.display]="isExpanded ? 'block' : 'none'">
   <h2>Edit Note</h2>
-  <form>
+    <form (submit)="onSaveNote()">
     <div class="note-input">
       <label>Note Description:</label>
       <input type="text" [(ngModel)]="note.note_description" name="note_description">
@@ -33,13 +33,14 @@
     <div class="note-input">
       <label>Note Status:</label>
       <select [(ngModel)]="note.note_status" name="note_status">
-        <option style="color:#000;" value="To Do">To Do</option>
+        <option style="color:#000;" value="To Do">To Do</option>?
         <option style="color:#000;" value="Doing">Doing</option>
         <option style="color:#000;" value="Review">Review</option>
         <option style="color:#000;" value="Done">Done</option>
       </select>
     </div>
     <button type="submit" class="button save-note-button" >Save Note</button>
-    <button type="button" class="button cancel-note-button" >Cancel</button>
+    <button type="button" class="button cancel-note-button" (click)="hideEditNote()">Cancel</button>
   </form>
+</div>
 </div>

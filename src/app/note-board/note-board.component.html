@@ -1,51 +1,70 @@
 <app-new-note></app-new-note>
-<div class="note-board">
-  <div class="note-container to-do">
-    <h3 class="status-title">To Do</h3>
-    <div class="toggle-button-container">
-      <button type="button" class="button toggle-button" (click)="toggleNotes('to-do')">Hide Notes</button>
-    </div>
-    <div class="note-list" id="todo-notes">
+<app-edit-note></app-edit-note>
+
+<div class="note-board" cdkDropListGroup>
+
+
+<div class="note-container to-do"
+     id="To Do"
+     cdkDropList
+     [cdkDropListData]="todo"
+     (cdkDropListDropped)="onDrop($event)">
+  <h3 class="status-title">To Do</h3>
+  <div class="note-list" id="todo-notes">
       <app-note-card class="note-card"
-        *ngFor="let note of notes | statusFilter:'To Do'"
-        [note]="note">
+                     *ngFor="let note of noteService.getNotesByStatus('To Do')"
+                     [note]="note"
+                     [cdkDragData]="note"
+                     cdkDrag>
       </app-note-card>
     </div>
   </div>
 
-  <div class="note-container doing">
+  <div class="note-container doing"
+       id="Doing"
+       cdkDropList
+       [cdkDropListData]="doing"
+       (cdkDropListDropped)="onDrop($event)">
     <h3 class="status-title">Doing</h3>
-    <div class="toggle-button-container">
-      <button type="button" class="button toggle-button" (click)="toggleNotes('doing')">Hide Notes</button>
-    </div>
     <div class="note-list" id="doing-notes">
       <app-note-card class="note-card"
-        *ngFor="let note of notes | statusFilter:'Doing'"
-        [note]="note">
+                     *ngFor="let note of noteService.getNotesByStatus('Doing')"
+                     [note]="note"
+                     [cdkDragData]="note"
+                     cdkDrag>
       </app-note-card>
     </div>
   </div>
 
-  <div class="note-container review">
+  <div class="note-container review"
+       id="Review"
+       cdkDropList
+       [cdkDropListData]="review"
+       (cdkDropListDropped)="onDrop($event)">
     <h3 class="status-title">Review</h3>
-    <div class="toggle-button-container">
-      <button type="button" class="button toggle-button" (click)="toggleNotes('review')">Hide Notes</button>
-    </div>
     <div class="note-list" id="review-notes">
-      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Review'"
-      [note]="note">
-    </app-note-card>
+      <app-note-card class="note-card"
+                     *ngFor="let note of noteService.getNotesByStatus('Review')"
+                     [note]="note"
+                     [cdkDragData]="note"
+                     cdkDrag>
+      </app-note-card>
     </div>
   </div>
 
-  <div class="note-container done">
+  <div class="note-container done"
+       id="Done"
+       cdkDropList
+       [cdkDropListData]="done"
+       (cdkDropListDropped)="onDrop($event)">
     <h3 class="status-title">Done</h3>
-    <div class="toggle-button-container">
-      <button type="button" class="button toggle-button" (click)="toggleNotes('done')">Hide Notes</button>
-    </div>
     <div class="note-list" id="done-notes">
-      <app-note-card class="note-card" *ngFor="let note of notes | statusFilter:'Done'" [note]="note"></app-note-card>
+      <app-note-card class="note-card"
+                     *ngFor="let note of noteService.getNotesByStatus('Done')"
+                     [note]="note"
+                     [cdkDragData]="note"
+                     cdkDrag>
+      </app-note-card>
     </div>
   </div>
-
 </div>

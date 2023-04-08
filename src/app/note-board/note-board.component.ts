@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
 import { Note } from '../note-card/note';
 import { NoteService } from '../note-card/note.service';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-note-board',
@@ -9,16 +10,21 @@ import { NoteService } from '../note-card/note.service';
 })
 export class NoteBoardComponent implements OnInit {
   notes: Note[] = [];
+  todo: Note[] = [];
+  done: Note[] = [];
+  doing: Note[] = [];
+  review: Note[] = [];
+  @Input() status!: string;
 
-  toDoNotesHidden = false;
-  doingNotesHidden = false;
-  reviewNotesHidden = false;
-  doneNotesHidden = false;
-
-  constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
+  constructor(public noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.notes = this.noteService.getNotes();
+    this.todo = this.noteService.getNotesByStatus('To Do');
+    this.doing = this.noteService.getNotesByStatus('Doing');
+    this.review = this.noteService.getNotesByStatus('Review');
+    this.done = this.noteService.getNotesByStatus('Done');
+
+    this.notes = [...this.todo, ...this.doing, ...this.review, ...this.done];
 
     this.noteService.noteAdded.subscribe((newNote: Note) => {
       this.onNoteAdded(newNote);
@@ -27,6 +33,7 @@ export class NoteBoardComponent implements OnInit {
       this.onNoteDeleted(note_id);
     });
   }
+
 
   onNoteAdded(newNote: Note) {
     this.noteService.addNote(newNote);
@@ -38,19 +45,19 @@ export class NoteBoardComponent implements OnInit {
     this.notes = this.notes.filter(note => note.note_id !== note_id);
   }
 
-  toggleNotes(container: string) {
-    const noteContainer = document.querySelector(`.note-container.${container}`);
-    if (noteContainer) {
-      const noteList = noteContainer.querySelector('.note-list');
-      if (noteList) {
-        noteList.classList.toggle('hidden');
-        // Get the button element inside the note container
-        const toggleButton = noteContainer.querySelector('button');
-        if (toggleButton) {
-          // Update the inner text of the button
-          toggleButton.innerText = noteList.classList.contains('hidden') ? 'Show Notes' : 'Hide Notes';
-        }
-      }
+  onDrop(event: CdkDragDrop<Note[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      const toStatus = event.container.id;
+      const note = event.item.data;
+      this.noteService.updateNoteStatus(note, toStatus);
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     }
   }
 

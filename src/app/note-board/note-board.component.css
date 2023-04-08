@@ -33,7 +33,6 @@
 }
 
 .note-card {
-  padding-bottom: 2rem;
   box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.7);
   width: 90%;
   margin: auto;
@@ -48,15 +47,11 @@
 .note-list {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }
 
 .toggle-button-container {
   align-self: self-end;
   padding: 0 15px 5px 0;
 }
-
-.toggle-button {
-
-}
-
 

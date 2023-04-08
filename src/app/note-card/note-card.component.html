@@ -10,7 +10,7 @@
     <p class="note-status">Status: {{ note.note_status }}</p>
   </div>
   <div class="note-buttons">
-    <button type="button" class="btn btn-primary expand-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}">Edit</button>
-    <button type="button" class="btn btn-danger delete-button" (click)="deleteNote()">Delete</button>
+    <button type="button" class="btn btn-primary expand-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}" (click)="editNotePush()">Edit</button>
+    <button type="button" class="btn btn-danger delete-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}" (click)="deleteNote()">Delete</button>
   </div>
 </div>

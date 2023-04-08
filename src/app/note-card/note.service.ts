@@ -61,6 +61,8 @@ export class NoteService {
   private lastNoteId: number = this.notes.reduce((maxId, note) => Math.max(maxId, note.note_id), 0);
   @Output() noteAdded = new EventEmitter<Note>();
   @Output() noteDeleted = new EventEmitter<number>();
+  @Output() editNotePushed = new EventEmitter<Note>();
+  @Output() noteEdited = new EventEmitter<Note>();
 
   constructor() {}
 
@@ -71,6 +73,10 @@ export class NoteService {
     } else {
       return this.notes;
     }
+  }
+
+  getNotesByStatus(status: string): Note[] {
+    return this.notes.filter(note => note.note_status === status);
   }
 
   addNote(note: Note): void {
@@ -85,6 +91,17 @@ export class NoteService {
       this.notes[index] = updatedNote;
       this.saveNotes();
     }
+  }
+
+  updateNoteStatus(updatedNote: Note, toStatus: string) {
+    const index = this.notes.findIndex(note => note.note_id === updatedNote.note_id);
+    if (index > -1) {
+      updatedNote.note_status = toStatus;
+      this.notes[index] = updatedNote;
+      this.saveNotes();
+    }
+    console.log("UpdatedNote: ", updatedNote);
+    console.log(toStatus)
   }
 
   deleteNote(note_id: Number): void {
