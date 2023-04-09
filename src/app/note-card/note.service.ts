@@ -55,6 +55,106 @@ export class NoteService {
       'Medium',
       '',
       'Doing'
+    ),
+    new Note(
+      6,
+      'Create new login page',
+      new Date(2023, 4, 10),
+      'Alice',
+      '',
+      'Medium',
+      '',
+      'To Do'
+    ),
+    new Note(
+      7,
+      'Develop new search algorithm',
+      new Date(2023, 4, 3),
+      'Bob',
+      '',
+      'High',
+      '',
+      'Doing'
+    ),
+    new Note(
+      8,
+      'Update UI/UX design',
+      new Date(2023, 4, 12),
+      'Carol',
+      '',
+      'Low',
+      '',
+      'To Do'
+    ),
+    new Note(
+      9,
+      'Migrate to new server',
+      new Date(2023, 4, 30),
+      'David',
+      '',
+      'High',
+      '',
+      'Doing'
+    ),
+    new Note(
+      10,
+      'Implement new payment gateway',
+      new Date(2023, 4, 20),
+      'Eve',
+      '',
+      'Medium',
+      '',
+      'To Do'
+    ),
+    new Note(
+      11,
+      'Test website for mobile responsiveness',
+      new Date(2023, 4, 5),
+      'Alice',
+      '',
+      'Low',
+      '',
+      'Doing'
+    ),
+    new Note(
+      12,
+      'Improve website security',
+      new Date(2023, 4, 17),
+      'Bob',
+      '',
+      'High',
+      '',
+      'To Do'
+    ),
+    new Note(
+      13,
+      'Create new user dashboard',
+      new Date(2023, 4, 8),
+      'Carol',
+      '',
+      'Medium',
+      '',
+      'To Do'
+    ),
+    new Note(
+      14,
+      'Optimize website load times',
+      new Date(2023, 4, 22),
+      'David',
+      '',
+      'High',
+      '',
+      'Doing'
+    ),
+    new Note(
+      15,
+      'Integrate with social media platforms',
+      new Date(2023, 4, 15),
+      'Eve',
+      '',
+      'Medium',
+      '',
+      'Review'
     )
   ];
 

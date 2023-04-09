@@ -15,8 +15,12 @@
   flex: 1;
   margin-right: 20px;
   background-color: #EAEDEE;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+  overflow: auto;
+  max-height: 80vh;
 }
+
 
 .note-container:last-child {
   margin-right: 0;
@@ -30,12 +34,16 @@
   font-weight: 500;
   background-color: #3a7ca5;
   border-radius: 6px 6px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .note-card {
   box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.7);
   width: 90%;
   margin: auto;
+  margin-bottom: 1rem;
   border-radius: 6px;
   background-color: #F5F6F7;
 }
