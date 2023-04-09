@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Note } from './note';
+import { Note } from '../../note-card/note';
 
 @Injectable({
   providedIn: 'root'
@@ -164,7 +164,7 @@ export class NoteService {
   @Output() editNotePushed = new EventEmitter<Note>();
   @Output() noteEdited = new EventEmitter<Note>();
 
-  constructor() {}
+  constructor() { }
 
   getNotes(): Note[] {
     const notesInStorage = localStorage.getItem('notes');
@@ -216,7 +216,7 @@ export class NoteService {
 
   calculateDaysUntilDue(due_date: Date): number {
     if (due_date instanceof Date && !isNaN(due_date.getTime())) {
-      let one_day = 1000 * 60 * 60 *24;
+      let one_day = 1000 * 60 * 60 * 24;
       let today = new Date();
       return Math.round((due_date.getTime() - today.getTime()) / one_day);
     } else {
