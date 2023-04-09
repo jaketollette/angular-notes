@@ -1,8 +1,16 @@
 <div class="note" (click)="expandNote()">
   <h2 class="note-title">{{ note.note_description }}</h2>
+  <div class="quick-info">
+    <hr class="note-priority-color" [ngClass]="{
+      'red': note.priority_level === 'High',
+      'yellow': note.priority_level === 'Medium',
+      'green': note.priority_level === 'Low'
+    }">
+    <p class="note-days-until-due">Days Until Due: {{ daysUntilDue(note.due_date) }}</p>
+  </div>
   <div class="note-info" [ngStyle]="{display: isExpanded ? 'block' : 'none'}">
     <p class="note-id">ID: {{ note.note_id }}</p>
-    <p class="note-due">Due Date: {{ note.due_date }}</p>
+    <p class="note-due">Due Date: {{ note.due_date | date:'MM/dd/yyyy' }}</p>
     <p class="note-assignee">Assignee: {{ note.assignee }}</p>
     <p class="note-attachments">Attachments: {{ note.attachments }}</p>
     <p class="note-priority">Priority Level: {{ note.priority_level }}</p>

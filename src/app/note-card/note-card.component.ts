@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Note } from './note';
 import { NoteService } from './note.service';
 
@@ -32,4 +32,7 @@ export class NoteCardComponent {
   }
 
 
+  daysUntilDue(due_date: Date) {
+    return this.noteService.calculateDaysUntilDue(due_date);
+  }
 }
