@@ -31,5 +31,8 @@ export class NoteCardComponent {
     this.isExpanded = !this.isExpanded;
   }
 
+  daysUntilDue(due_date: Date) {
+    return this.noteService.calculateDaysUntilDue(due_date);
+  }
 
 }
