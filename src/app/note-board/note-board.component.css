@@ -40,12 +40,7 @@
 }
 
 .note-card {
-  box-shadow: 1px 1px 11px 0px rgba(0, 0, 0, 0.7);
-  width: 90%;
-  margin: auto;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-  background-color: #F5F6F7;
+
 }
 
 .note-list.hidden {

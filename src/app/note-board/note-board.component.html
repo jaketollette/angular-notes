@@ -13,9 +13,7 @@
   <div class="note-list" id="todo-notes">
       <app-note-card class="note-card"
                      *ngFor="let note of noteService.getNotesByStatus('To Do')"
-                     [note]="note"
-                     [cdkDragData]="note"
-                     cdkDrag>
+                     [note]="note">
       </app-note-card>
     </div>
   </div>
@@ -29,9 +27,7 @@
     <div class="note-list" id="doing-notes">
       <app-note-card class="note-card"
                      *ngFor="let note of noteService.getNotesByStatus('Doing')"
-                     [note]="note"
-                     [cdkDragData]="note"
-                     cdkDrag>
+                     [note]="note">
       </app-note-card>
     </div>
   </div>
@@ -45,9 +41,7 @@
     <div class="note-list" id="review-notes">
       <app-note-card class="note-card"
                      *ngFor="let note of noteService.getNotesByStatus('Review')"
-                     [note]="note"
-                     [cdkDragData]="note"
-                     cdkDrag>
+                     [note]="note">
       </app-note-card>
     </div>
   </div>
@@ -61,9 +55,7 @@
     <div class="note-list" id="done-notes">
       <app-note-card class="note-card"
                      *ngFor="let note of noteService.getNotesByStatus('Done')"
-                     [note]="note"
-                     [cdkDragData]="note"
-                     cdkDrag>
+                     [note]="note">
       </app-note-card>
     </div>
   </div>
