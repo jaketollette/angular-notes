@@ -189,7 +189,6 @@ export class NoteService {
     const index = this.notes.findIndex(note => note.note_id === updatedNote.note_id);
     if (index > -1) {
       this.notes[index] = updatedNote;
-      this.calculateDaysUntilDue(updatedNote.due_date);
       this.saveNotes();
     }
   }
@@ -201,6 +200,8 @@ export class NoteService {
       this.notes[index] = updatedNote;
       this.saveNotes();
     }
+    console.log("UpdatedNote: ", updatedNote);
+    console.log(toStatus)
   }
 
   deleteNote(note_id: Number): void {
@@ -212,14 +213,4 @@ export class NoteService {
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
-  calculateDaysUntilDue(due_date: Date): number {
-    if (due_date instanceof Date && !isNaN(due_date.getTime())) {
-      let one_day = 1000 * 60 * 60 *24;
-      let today = new Date();
-      return Math.round((due_date.getTime() - today.getTime()) / one_day);
-    } else {
-      console.error("Invalid date:", due_date);
-      return 0;
-    }
-  }
 }
