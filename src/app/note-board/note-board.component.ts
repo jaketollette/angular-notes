@@ -1,7 +1,7 @@
-import {Component, OnInit, ChangeDetectorRef, Input} from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Note } from '../note-card/note';
-import { NoteService } from '../note-card/note.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import { NoteService } from '../services/note/note.service';
 
 @Component({
   selector: 'app-note-board',
@@ -16,7 +16,7 @@ export class NoteBoardComponent implements OnInit {
   review: Note[] = [];
   @Input() status!: string;
 
-  constructor(public noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
+  constructor(public noteService: NoteService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.todo = this.noteService.getNotesByStatus('To Do');

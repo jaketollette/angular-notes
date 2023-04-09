@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { NoteService } from '../services/note/note.service';
 import { Note } from './note';
-import { NoteService } from './note.service';
 
 @Component({
   selector: 'app-note-card',
@@ -11,7 +11,7 @@ export class NoteCardComponent {
   @Input() note!: Note;
   isExpanded = false;
 
-  constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) {}
+  constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) { }
 
   deleteNote() {
     if (confirm("DELETE?") != true) {

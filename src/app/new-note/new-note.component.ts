@@ -1,6 +1,6 @@
-import { NoteService } from './../note-card/note.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Note } from '../note-card/note';
+import { NoteService } from '../services/note/note.service';
 
 @Component({
   selector: 'app-new-note',
@@ -12,7 +12,7 @@ export class NewNoteComponent {
   @Output() newNote: Note = new Note(0, '', new Date(), '', '', '', '', 'To Do');
   newNoteVisible = false;
 
-  constructor(private NoteService: NoteService) {}
+  constructor(private NoteService: NoteService) { }
 
   showNewNote() {
     this.newNoteVisible = true;
