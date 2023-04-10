@@ -7,7 +7,7 @@ import { EditNoteComponent } from './edit-note/edit-note.component';
 import { NewNoteComponent } from './new-note/new-note.component';
 import { NoteBoardComponent } from './note-board/note-board.component';
 import { NoteCardComponent } from './note-card/note-card.component';
-import { DaysDuePipe } from './pipes/due-date.pipe';
+import { DaysDuePipe } from './pipes/days-due.pipe';
 import { StatusFilterPipe } from './pipes/status-filter.pipe';
 
 @NgModule({
