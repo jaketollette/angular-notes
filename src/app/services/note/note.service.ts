@@ -1,6 +1,10 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { MOCK_NOTES } from 'src/app/constants/mock.data';
+import { v4 as uuidv4 } from 'uuid';
 import { Note, NoteStatus } from '../../interfaces/note.interface';
+
+const NOTES_KEY = 'notes';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +12,18 @@ import { Note, NoteStatus } from '../../interfaces/note.interface';
 export class NoteService {
   private notes: Note[] = MOCK_NOTES;
 
-  private lastNoteId: number = this.notes.reduce((maxId, note) => Math.max(maxId, note.id), 0);
   @Output() noteAdded = new EventEmitter<Note>();
-  @Output() noteDeleted = new EventEmitter<number>();
   @Output() editNotePushed = new EventEmitter<Note>();
   @Output() noteEdited = new EventEmitter<Note>();
 
   constructor() { }
 
-  getNotes(): Note[] {
-    const notesInStorage = localStorage.getItem('notes');
+  getNotes(): Observable<Note[]> {
+    const notesInStorage = localStorage.getItem(NOTES_KEY);
     if (notesInStorage) {
-      return this.notes = JSON.parse(notesInStorage);
+      return of(JSON.parse(notesInStorage));
     } else {
-      return this.notes;
+      return of(this.notes);
     }
   }
 
@@ -30,7 +32,7 @@ export class NoteService {
   }
 
   addNote(note: Note): void {
-    note.id = ++this.lastNoteId;
+    note.id = uuidv4();
     this.notes.push(note);
     this.saveNotes();
   }
@@ -54,12 +56,12 @@ export class NoteService {
     console.log(toStatus)
   }
 
-  deleteNote(id: Number): void {
+  deleteNote(id: string): void {
     this.notes = this.notes.filter(note => note.id !== id);
     this.saveNotes();
   }
 
   saveNotes() {
-    localStorage.setItem('notes', JSON.stringify(this.notes));
+    localStorage.setItem(NOTES_KEY, JSON.stringify(this.notes));
   }
 }

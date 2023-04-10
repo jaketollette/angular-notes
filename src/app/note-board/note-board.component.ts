@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, filter } from 'rxjs';
 import { Note, NoteStatus } from "../interfaces/note.interface";
 import { NoteService } from '../services/note/note.service';
+import { NoteStore } from '../services/note/note.store';
 
 @Component({
   selector: 'app-note-board',
@@ -9,40 +11,46 @@ import { NoteService } from '../services/note/note.service';
   styleUrls: ['./note-board.component.css']
 })
 export class NoteBoardComponent implements OnInit {
-  notes: Note[] = [];
   todo: Note[] = [];
   done: Note[] = [];
   doing: Note[] = [];
   review: Note[] = [];
+  notes$: Observable<Note[]> = this.noteStore.notes$;
+
   @Input() status!: string;
 
-  constructor(public noteService: NoteService, private changeDetector: ChangeDetectorRef) { }
+  constructor(
+    private readonly noteService: NoteService,
+    private readonly noteStore: NoteStore
+  ) { }
 
   ngOnInit(): void {
-    this.todo = this.noteService.getNotesByStatus('To Do');
-    this.doing = this.noteService.getNotesByStatus('Doing');
-    this.review = this.noteService.getNotesByStatus('Review');
-    this.done = this.noteService.getNotesByStatus('Done');
-
-    this.notes = [...this.todo, ...this.doing, ...this.review, ...this.done];
+    this.noteStore.fetchNotes();
+    this.noteStore.notes$.pipe(
+      filter(n => n?.length > 0)
+    ).subscribe({
+      next: (notes) => {
+        this.todo = notes.filter(n => n.status === 'To Do');
+        this.doing = notes.filter(n => n.status === 'Doing');
+        this.review = notes.filter(n => n.status === 'Review');
+        this.done = notes.filter(n => n.status === 'Done');
+      }
+    });
 
     this.noteService.noteAdded.subscribe((newNote: Note) => {
       this.onNoteAdded(newNote);
     });
-    this.noteService.noteDeleted.subscribe((id: number) => {
-      this.onNoteDeleted(id);
-    });
+
   }
 
 
   onNoteAdded(newNote: Note) {
     this.noteService.addNote(newNote);
-    this.notes = this.noteService.getNotes();
-    this.changeDetector.detectChanges();
+    this.noteStore.fetchNotes();
   }
 
-  onNoteDeleted(id: number) {
-    this.notes = this.notes.filter(note => note.id !== id);
+  onNoteDeleted(id: string) {
+    this.noteStore.deleteNote(id);
   }
 
   onDrop(event: CdkDragDrop<Note[]>) {

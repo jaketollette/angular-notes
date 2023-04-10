@@ -1,5 +1,5 @@
 export interface Note {
-  id: number;
+  id: string;
   description: string;
   dueDate: Date;
   assignee: string;
@@ -14,7 +14,7 @@ export type NoteStatus = 'To Do' | 'Doing' | 'Review' | 'Done';
 export type Priority = 'High' | 'Low' | 'Medium';
 
 export const NULL_NOTE: Note = {
-  id: 0,
+  id: '',
   assignee: '',
   attachments: '',
   comments: '',

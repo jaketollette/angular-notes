@@ -51,6 +51,9 @@ export class DateService {
    * @example differenceInDays(new Date(2023, 4, 9), new Date(2023, 4, 13)): 4
    */
   public differenceInDays(start: Date, end: Date): number {
+    if (!isValid(end)) {
+      end = this.getDate(end);
+    }
     return differenceInCalendarDays(end, start);
   }
 }

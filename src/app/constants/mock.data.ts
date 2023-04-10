@@ -1,8 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Note } from "../interfaces/note.interface";
 
 export const MOCK_NOTES: Note[] = [
   {
-    id: 1,
+    id: uuidv4(),
     assignee: 'Alice',
     attachments: '',
     comments: '',
@@ -12,7 +13,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 2,
+    id: uuidv4(),
     assignee: 'Bob',
     attachments: 'landing-page-design.pdf',
     comments: '',
@@ -22,7 +23,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 3,
+    id: uuidv4(),
     description: 'Fix the reported bugs',
     dueDate: new Date(2023, 3, 18),
     assignee: 'Carol',
@@ -32,7 +33,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Review'
   },
   {
-    id: 4,
+    id: uuidv4(),
     description: 'Optimize database queries',
     dueDate: new Date(2023, 3, 28),
     assignee: 'David',
@@ -42,7 +43,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Done'
   },
   {
-    id: 5,
+    id: uuidv4(),
     description: 'Write unit tests for new features',
     dueDate: new Date(2023, 3, 22),
     assignee: 'Eve',
@@ -52,7 +53,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 6,
+    id: uuidv4(),
     description: 'Create new login page',
     dueDate: new Date(2023, 4, 10),
     assignee: 'Alice',
@@ -62,7 +63,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 7,
+    id: uuidv4(),
     description: 'Develop new search algorithm',
     dueDate: new Date(2023, 4, 3),
     assignee: 'Bob',
@@ -72,7 +73,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 8,
+    id: uuidv4(),
     description: 'Update UI/UX design',
     dueDate: new Date(2023, 4, 12),
     assignee: 'Carol',
@@ -82,7 +83,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 9,
+    id: uuidv4(),
     description: 'Migrate to new server',
     dueDate: new Date(2023, 4, 30),
     assignee: 'David',
@@ -92,7 +93,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 10,
+    id: uuidv4(),
     description: 'Implement new payment gateway',
     dueDate: new Date(2023, 4, 20),
     assignee: 'Eve',
@@ -102,7 +103,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 11,
+    id: uuidv4(),
     description: 'Test website for mobile responsiveness',
     dueDate: new Date(2023, 4, 5),
     assignee: 'Alice',
@@ -112,7 +113,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 12,
+    id: uuidv4(),
     description: 'Improve website security',
     dueDate: new Date(2023, 4, 17),
     assignee: 'Bob',
@@ -122,7 +123,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 13,
+    id: uuidv4(),
     description: 'Create new user dashboard',
     dueDate: new Date(2023, 4, 8),
     assignee: 'Carol',
@@ -132,7 +133,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'To Do'
   },
   {
-    id: 14,
+    id: uuidv4(),
     description: 'Optimize website load times',
     dueDate: new Date(2023, 4, 22),
     assignee: 'David',
@@ -142,7 +143,7 @@ export const MOCK_NOTES: Note[] = [
     status: 'Doing'
   },
   {
-    id: 15,
+    id: uuidv4(),
     description: 'Integrate with social media platforms',
     dueDate: new Date(2023, 4, 15),
     assignee: 'Eve',
