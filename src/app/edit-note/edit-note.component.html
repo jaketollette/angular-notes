@@ -4,11 +4,11 @@
     <form (submit)="onSaveNote()">
       <div class="note-input">
         <label>Note Description:</label>
-        <input type="text" [(ngModel)]="note.note_description" name="note_description">
+        <input type="text" [(ngModel)]="note.description" name="description">
       </div>
       <div class="note-input">
         <label>Due Date:</label>
-        <input type="date" [(ngModel)]="note.due_date" name="due_date">
+        <input type="date" [(ngModel)]="note.dueDate" name="dueDate">
       </div>
       <div class="note-input">
         <label>Assignee:</label>
@@ -20,7 +20,7 @@
       </div>
       <div class="note-input">
         <label>Priority Level:</label>
-        <select [(ngModel)]="note.priority_level" name="priority_level">
+        <select [(ngModel)]="note.priority" name="priority">
           <option style="color:#000;" value="High">High</option>
           <option style="color:#000;" value="Medium">Medium</option>
           <option style="color:#000;" value="Low">Low</option>
@@ -32,7 +32,7 @@
       </div>
       <div class="note-input">
         <label>Note Status:</label>
-        <select [(ngModel)]="note.note_status" name="note_status">
+        <select [(ngModel)]="note.status" name="note_status">
           <option style="color:#000;" value="To Do">To Do</option>?
           <option style="color:#000;" value="Doing">Doing</option>
           <option style="color:#000;" value="Review">Review</option>

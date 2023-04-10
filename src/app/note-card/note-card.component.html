@@ -1,33 +1,34 @@
-<div class="note" (click)="expandNote()"
-[cdkDragData]="note"
-cdkDropListAutoScroll
-cdkDrag>
+<div class="note" (click)="expandNote()" [cdkDragData]="note" cdkDropListAutoScroll cdkDrag>
   <div class="note-header" cdkDragHandle>
     <svg width="24px" fill="#000" viewBox="0 0 24 24">
-      <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
       <path d="M0 0h24v24H0z" fill="none"></path>
     </svg>
   </div>
-  <h2 class="note-title">{{ note.note_description }}</h2>
+  <h2 class="note-title">{{ note.description }}</h2>
   <div class="quick-info">
     <hr class="note-priority-color" [ngClass]="{
-      'red': note.priority_level === 'High',
-      'yellow': note.priority_level === 'Medium',
-      'green': note.priority_level === 'Low'
+      'red': note.priority === 'High',
+      'yellow': note.priority === 'Medium',
+      'green': note.priority === 'Low'
     }">
-    <p class="note-days-until-due">Days Until Due: {{ daysUntilDue(note.due_date) }}</p>
+    <p class="note-days-until-due">Days Until Due: {{ note.dueDate | daysDue }}</p>
   </div>
   <div class="note-info" [ngStyle]="{display: isExpanded ? 'block' : 'none'}">
-    <p class="note-id">ID: {{ note.note_id }}</p>
-    <p class="note-due">Due Date: {{ note.due_date }}</p>
+    <p class="note-id">ID: {{ note.id }}</p>
+    <p class="note-due">Due Date: {{ note.dueDate | date: 'fullDate' }}</p>
     <p class="note-assignee">Assignee: {{ note.assignee }}</p>
     <p class="note-attachments">Attachments: {{ note.attachments }}</p>
-    <p class="note-priority">Priority Level: {{ note.priority_level }}</p>
+    <p class="note-priority">Priority Level: {{ note.priority }}</p>
     <p class="note-comments">Comments: {{ note.comments }}</p>
-    <p class="note-status">Status: {{ note.note_status }}</p>
+    <p class="note-status">Status: {{ note.status }}</p>
   </div>
   <div class="note-buttons">
-    <button type="button" class="btn btn-primary expand-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}" (click)="editNotePush()">Edit</button>
-    <button type="button" class="btn btn-danger delete-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}" (click)="deleteNote()">Delete</button>
+    <button type="button" class="btn btn-primary expand-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}"
+      (click)="editNotePush()">Edit</button>
+    <button type="button" class="btn btn-danger delete-button" [ngStyle]="{display: isExpanded ? 'block' : 'none'}"
+      (click)="deleteNote()">Delete</button>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Note } from '../note-card/note';
+import { NULL_NOTE, Note } from '../interfaces/note.interface';
 import { NoteService } from '../services/note/note.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class EditNoteComponent implements OnInit {
   isExpanded = false;
 
   constructor(private noteService: NoteService) {
-    this.note = new Note(0, '', new Date(), '', '', '', '', '');
+    this.note = { ...NULL_NOTE };
   }
 
   ngOnInit(): void {

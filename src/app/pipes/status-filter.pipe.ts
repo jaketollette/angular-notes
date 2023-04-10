@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Note } from '../note-card/note';
+import { Note } from '../interfaces/note.interface';
 
 @Pipe({
-  name: 'statusFilter'
+  name: 'statusFilter',
+  standalone: true,
 })
 export class StatusFilterPipe implements PipeTransform {
   transform(notes: Note[], status: string): Note[] {
-    return notes.filter(note => note.note_status === status);
+    return notes.filter(note => note.status === status);
   }
 }

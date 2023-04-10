@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { Note } from '../note-card/note';
+import { Note, NoteStatus } from "../interfaces/note.interface";
 import { NoteService } from '../services/note/note.service';
 
 @Component({
@@ -29,8 +29,8 @@ export class NoteBoardComponent implements OnInit {
     this.noteService.noteAdded.subscribe((newNote: Note) => {
       this.onNoteAdded(newNote);
     });
-    this.noteService.noteDeleted.subscribe((note_id: number) => {
-      this.onNoteDeleted(note_id);
+    this.noteService.noteDeleted.subscribe((id: number) => {
+      this.onNoteDeleted(id);
     });
   }
 
@@ -41,15 +41,15 @@ export class NoteBoardComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  onNoteDeleted(note_id: number) {
-    this.notes = this.notes.filter(note => note.note_id !== note_id);
+  onNoteDeleted(id: number) {
+    this.notes = this.notes.filter(note => note.id !== id);
   }
 
   onDrop(event: CdkDragDrop<Note[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      const toStatus = event.container.id;
+      const toStatus = event.container.id as NoteStatus;
       const note = event.item.data;
       this.noteService.updateNoteStatus(note, toStatus);
       transferArrayItem(

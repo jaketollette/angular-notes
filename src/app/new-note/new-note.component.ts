@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { Note } from '../note-card/note';
+import { NULL_NOTE, Note } from '../interfaces/note.interface';
 import { NoteService } from '../services/note/note.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { NoteService } from '../services/note/note.service';
 })
 export class NewNoteComponent {
   newNoteDescription: string = 'new-note';
-  @Output() newNote: Note = new Note(0, '', new Date(), '', '', '', '', 'To Do');
+  @Output() newNote: Note = { ...NULL_NOTE };
   newNoteVisible = false;
 
   constructor(private NoteService: NoteService) { }
@@ -32,19 +32,11 @@ export class NewNoteComponent {
 
 
   addNote(newNote: Note) {
-    const noteToAdd = new Note(
-      newNote.note_id,
-      newNote.note_description,
-      newNote.due_date,
-      newNote.assignee,
-      newNote.attachments,
-      newNote.priority_level,
-      newNote.comments,
-      'To Do'
-    );
-    this.NoteService.noteAdded.emit(noteToAdd);
-    this.newNote = new Note(0, '', new Date(), '', '', '', '', 'To Do');
+    this.NoteService.noteAdded.emit({
+      ...newNote,
+      status: 'To Do'
+    });
+    this.newNote = { ...NULL_NOTE };
     this.hideNewNote();
-
   }
 }

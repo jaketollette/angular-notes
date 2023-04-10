@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Note } from '../interfaces/note.interface';
 import { NoteService } from '../services/note/note.service';
-import { Note } from './note';
 
 @Component({
   selector: 'app-note-card',
@@ -11,14 +11,12 @@ export class NoteCardComponent {
   @Input() note!: Note;
   isExpanded = false;
 
-  constructor(private noteService: NoteService, private changeDetector: ChangeDetectorRef) { }
+  constructor(private readonly noteService: NoteService) { }
 
   deleteNote() {
-    if (confirm("DELETE?") != true) {
-      return;
-    } else {
-      this.noteService.noteDeleted.emit(this.note.note_id);
-      this.noteService.deleteNote(this.note.note_id);
+    if (confirm("DELETE?")) {
+      this.noteService.noteDeleted.emit(this.note.id);
+      this.noteService.deleteNote(this.note.id);
     }
   }
 
@@ -29,10 +27,6 @@ export class NoteCardComponent {
 
   expandNote() {
     this.isExpanded = !this.isExpanded;
-  }
-
-  daysUntilDue(due_date: Date) {
-    return this.noteService.calculateDaysUntilDue(due_date);
   }
 
 }
